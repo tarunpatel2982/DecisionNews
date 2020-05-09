@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-
-
-
-  <?php
-     session_start();
-      include("db_con.php");
-  ?>
-<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<?php
+    session_start();
+   
+    include("db_con.php");
+    ?>
     <head>
         <!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,8 +17,18 @@
         <meta charset="utf-8">
 
         <!-- Site Title -->
-        <title>Teble</title>
-
+        <title>Decision News</title>
+        <style>
+            .form1
+            {
+                margin-top: 95px;
+            }
+            .container1 p
+            {
+                margin-top: 80px;
+                font-size: 80px;
+            }
+        </style>
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="img/icons/">
@@ -35,17 +42,16 @@
         ============================================= -->
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+
         <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/justifiedGallery.min.css">
         <link rel="stylesheet" href="css/et-font.css">
         <link rel="stylesheet" href="css/animate.css">
         <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/owl.theme.css">
-        <link rel="stylesheet" href="css/view.css">       
-        <link rel="stylesheet" href="css1/bootstrap.min.css">
-        <link rel="stylesheet" href="css1/dataTables.bootstrap4.min.css">
-
-			
+        <link rel="stylesheet" href="css/emp.css">
+		
+        
     </head>
 	
     <body>
@@ -74,8 +80,10 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img src="img/logo.png" alt="">
-                    </a>
+                       <!--  <img src="img/favicon.png" alt="">
+                     -->
+                         <h1 style="color: white;">Desicion News</h1>
+                     </a>
                 </div>
                 
                 <div class="nav-toggle hidden-xs">
@@ -88,112 +96,83 @@
 
                 <nav class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav main-manu">
-                       <?php
+                        <?php
                             if(isset($_SESSION['username']))
                             {
                                 ?>
-                              <li><a href="AddEmp.php">Add New Emp</a></li>
-                             <!--  <li><a href="ViewData.html">View Data</a></li> -->
-                              <li><a href="#">Report</a></li>
-                         <?php
+                        <li><a href="home_page.php">Home</a></li>
+                        <li><a href="ViewData.php">View Data</a></li>
+
+                        <?php
                             }
-                          ?>
-                        
+                        ?>
                     </ul>
                 </nav><!-- /.navbar-collapse -->
             </div>
         </header>
 
-        <div class="home-banner fullscreen" >
+         <div class="home-banner fullscreen" >
             <div class="gradient"></div>
             <div class="banner-content dtable fullscreen">
                 <div class="content-inner dtablecell">
                     <div class="container">
-                       
 
- <div class="container mb-3 mt-3">
-    <table class="table table-striped table-bordered mydatatable" cellspacing="0" width="100%">
-      <thead>
-      
-           <tr>
-        
-        <th class="th-sm">Name
+                        <div class="form1">
+                        <center><div style="width: 365px;" class="panel panel-primary">
+                            <div class="panel-heading"><h3><center>Renue I-Card </h3></center></div>
+                            
+                           
+								  <form method="post" class=" form-horizontal" action="update_i_card.php" enctype="multipart/form-data"  >
+									 <fieldset >
+									   
+									
+                                        <?php
 
-        </th>
-        <th class="th-sm">Designation
+                                               $_SESSION['emp_id']=$_GET['emp_id'];
+                                               $sql="SELECT * FROM employee where emp_id='".$_GET['emp_id']."'";
+            
+                                               $query=mysqli_query($con,$sql);
+                                             
+                                                while($row=mysqli_fetch_array($query)){
 
-        </th>
-        <th class="th-sm">Join Date
+                                        ?>
+										<div class="form-group">
+										  <label class="col-md-4 control-label">Expires  :</label>  
+											<div class="col-md-4 inputGroupContainer">
+											  <div class="input-group">
+												<span class="input-group-addon"><i class="glyphicon glyphicon-minus-sign"></i></span>
+												   <input value="<?php echo $row['$expire_date']?>" name="expire_date"  class="form-control"  type="date" >
+											  </div>
+											 </div>
+										</div>
+									
+                                        <?php
+                                                 }
+                                        ?>
+									   <div class="form-group">
+										<label class="col-md-4 control-label"></label>
+										  <div class="col-md-4">
+										  
+										<button type="submit" name="submit"class="btn btn-warning" >SUBMIT <span class="glyphicon glyphicon-send"></span></button>
+										  </div>
+									  </div>
 
-        </th>
-        <th class="th-sm">Expire Date
+									 
+									
+								  </fieldset>
+								 </form>
 
-        </th>
-        <th class="th-sm">Update
-
-        </th>
-        <th class="th-sm">Action</th>
-
-      </tr>
-          
-      </thead>
-
-      <tbody> 
-
-            <?php
-                $sql='SELECT * FROM employee';
-                $query=mysqli_query($con,$sql);
-             ?>
-          <tr>
-               <?php
-                while($row=mysqli_fetch_array($query))
-                {
-              ?>
-                 <td value=" "><?php echo $row['first_name'] , $row['last_name'] ?></td>
-                <td value=" "><?php echo $row['designation'] ?></td>
-
-                <?php $m_date = strtotime($row['member_since']); ?>
-                <td value=" "><?php echo date('d/m/Y' ,$m_date); ?></td>
-                <?php $e_date = strtotime($row['expire_date']); ?>
-                <td value=" "><?php echo date('d/m/Y' ,$e_date); ?></td>
-                <td><a class="btn btn-primary" style="border-radius: 10px;" href="i_Card_Renue.php?emp_id=<?php echo $row['emp_id']?>">Renew I-Card</a></td>
-                <td><a class="btn btn-warning" style="border-radius: 10px;" href="i_Card_View.php?emp_id=<?php echo $row['emp_id']?>" >View I-Card</a></td>
-                
-                                       
-            </tr>
-             <?php
-                }
-            ?>
-         </tbody>
-      
-      </table>
-
-
+                                 </div>
+                            </center>
+                            </div>
+							   </div>
+							 
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-        <!--
-        JavaScripts
-        ========================== -->
-<!--
-<script src="js1/jquery-3.3.1.min.js"></script>-->	
-<script src="js1/jquery-3.3.1.min.js"></script>
-<script src="js1/bootstrap.min.js"></script>
-
-<script src="js1/jquery.dataTables.min.js"></script>
-<script src="js1/dataTables.bootstrap4.min.js"></script>
-
-<script>
-
-$('.mydatatable').DataTable()
-</script>
-        
-
-
+         <script src="js/jquery.min.js"></script>
+	 
         <script src="js/vendor/jquery-1.11.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/owl.carousel.js"></script>
@@ -202,4 +181,15 @@ $('.mydatatable').DataTable()
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/main.js"></script>
     </body>
+
+   
 </html>
+
+
+
+
+<?php
+
+
+	  
+	 
