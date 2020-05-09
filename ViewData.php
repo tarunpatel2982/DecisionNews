@@ -151,8 +151,11 @@
               ?>
                  <td value=" "><?php echo $row['first_name'] , $row['last_name'] ?></td>
                 <td value=" "><?php echo $row['designation'] ?></td>
-                <td value=" "><?php echo $row['member_since'] ?></td>
-                <td value=" "><?php echo $row['expire_date'] ?></td>
+
+                <?php $m_date = strtotime($row['member_since']); ?>
+                <td value=" "><?php echo date('d/m/Y' ,$m_date); ?></td>
+                <?php $e_date = strtotime($row['expire_date']); ?>
+                <td value=" "><?php echo date('d/m/Y' ,$e_date); ?></td>
                 <td><button class="btn btn-primary" style="border-radius: 10px;">Renew I-Card</button></td>
                 <td><a class="btn btn-warning" style="border-radius: 10px;" href="i_Card_View.php?emp_id=<?php echo $row['emp_id']?>" >View I-Card</a></td>
 

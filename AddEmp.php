@@ -198,18 +198,7 @@
 											  </div>
 											</div>
 										</div>
-
-										<div class="form-group">
-										  <label class="col-md-4 control-label">Contact No :</label>  
-											<div class="col-md-4 inputGroupContainer">
-											  <div class="input-group">
-												<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-												   <input  name="mob"  class="form-control"  type="text" >
-											  </div>
-											 </div>
-										</div>
-
-
+										
 										<div class="form-group">
 										  <label class="col-md-4 control-label">Email id :</label>  
 											<div class="col-md-4 inputGroupContainer">
@@ -220,6 +209,18 @@
 											 </div>
 										</div>
 
+											
+										<div class="form-group">
+										  <label class="col-md-4 control-label">Contact No :</label>  
+											<div class="col-md-4 inputGroupContainer">
+											  <div class="input-group">
+												<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+												   <input  name="contact_no"  class="form-control"  type="text" >
+											  </div>
+											 </div>
+										</div>
+
+										
 										 <div class="form-group">
 										  <label class="col-md-4 control-label">Blood Group :</label>  
 											<div class="col-md-4 inputGroupContainer">
@@ -240,6 +241,15 @@
 											 </div>
 										</div>
 
+										<div class="form-group">
+										  <label class="col-md-4 control-label">Aadhaar No :</label>  
+											<div class="col-md-4 inputGroupContainer">
+											  <div class="input-group">
+												<span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
+												   <input  name="Adhar_card_no"  class="form-control"  type="text" >
+											  </div>
+											 </div>
+										</div>
 
 
 										 <div class="form-group"> 

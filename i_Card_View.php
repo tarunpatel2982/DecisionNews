@@ -20,7 +20,7 @@
   	if(isset($_SESSION['username']))
          {
 
-              $sql="SELECT employee.designation ,employee.profile,employee.first_name,employee.last_name,employee.member_since ,employee.expire_date ,employee.dob,employee.address,employee.mob ,employee.email FROM employee where emp_id='".$_GET['emp_id']."'";
+              $sql="SELECT * FROM employee where emp_id='".$_GET['emp_id']."'";
             
               $query=mysqli_query($con,$sql);
             
@@ -44,9 +44,15 @@
   			<h3>Decision News</h3>
 		</div>
 		<div>
-			<p class="p1">Member Since:<?php echo $row['member_since']?> </p>
-			<p class="p2">Expire: <?php echo $row['expire_date']?></p>
-			<p class="p3">Date Of Birth:<?php echo $row['dob']?></p>
+			
+			<?php $m_date = strtotime($row['member_since']); ?>
+			<p class="p1">Member Since:<?php echo date('d/m/Y' ,$m_date); ?> </p>
+			
+			<?php $e_date = strtotime($row['expire_date']); ?>
+			<p class="p2">Expire: <?php echo date('d/m/Y' ,$e_date);?></p>
+
+			<?php $b_date = strtotime($row['dob']); ?>
+			<p class="p3">Date Of Birth:<?php echo date('d/m/Y' ,$b_date);?></p>
 			<img class="qrimage"src="D_Barcode.png"/>
 		</div>
 		<div class="sing">
@@ -69,7 +75,7 @@
 	<h1 class="title" >PRESS</h1>
  
 	<p class="address"> <?php echo $row['address']?></p>
-	<p class="mobno">Mobile No :<?php echo $row['mob']?></p>
+	<p class="mobno">Mobile No :<?php echo $row['contact_no']?></p>
 	<p class="email">Email : <?php echo $row['email']?></p>
 	
 	<p class="domain"> www.decisionnews.in</p>
