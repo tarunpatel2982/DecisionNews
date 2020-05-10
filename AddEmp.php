@@ -30,7 +30,7 @@
         </style>
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="img/icons/">
+        <link rel="shortcut icon" href="img/favicon.png">
 
         <link href='https://fonts.googleapis.com/css?family=Raleway:200,300,400,700,900,800' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Roboto:200,300,400,900,700,500,300' rel='stylesheet' type='text/css'>
